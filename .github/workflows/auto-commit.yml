@@ -2,7 +2,7 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '0 5 * * *'  # Runs every day at 5 AM UTC
+    - cron: '0 5 * * *'
   workflow_dispatch:
 
 jobs:
@@ -10,43 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-    - name: Auto Commit
-      run: |
-        echo "✅ Auto update on $(date)" >> log.txt
-        git config --global user.name "BLESSY"
-        git config --global user.email "2005blessy@example.com"
-        git add .
-        git commit -m "📅 Auto commit on $(date)" || echo "No changes to commit"
-        git push
+      - name: Make Changes
+        run: |
+          echo "✅ Auto update on $(date)" >> log.txt
 
-name: Auto Commit
-
-on:
-  schedule:
-    - cron: '0 5 * * *'  # Daily at 5:00 AM UTC
-  workflow_dispatch:
-
-jobs:
-  auto-commit:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-
-    - name: Make Changes
-      run: |
-        echo "✅ Auto update on $(date)" >> log.txt
-
-    - name: Commit & Push
-      run: |
-        git config --global user.name "BLESSY"
-        git config --global user.email "2005blessy@example.com"
-        git add .
-        git commit -m "📅 Auto commit on $(date)" || echo "No changes to commit"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit & Push
+        run: |
+          git config --global user.name "BLESSY"
+          git config --global user.email "2005blessy@example.com"
+          git add .
+          git commit -m "📅 Auto commit on $(date)" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
