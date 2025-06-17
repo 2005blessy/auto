@@ -2,7 +2,7 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '0 5 * * *'
+    - cron: '0 5 * * *'  # Runs daily at 5:00 AM UTC
   workflow_dispatch:
 
 jobs:
@@ -16,6 +16,7 @@ jobs:
       - name: Make Changes
         run: |
           echo "✅ Auto update on $(date)" >> log.txt
+          echo "force-update $(date +%s)" >> dummy.txt
 
       - name: Commit & Push
         run: |
