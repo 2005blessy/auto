@@ -1,8 +1,8 @@
 name: Auto Commit
 
 on:
-  schedule:
-    - cron: '0 5 * * *'  # Daily at 5:00 AM UTC
+  # schedule:
+  #   - cron: '0 5 * * *'  # Daily at 5:00 AM UTC
   workflow_dispatch:
 
 jobs:
